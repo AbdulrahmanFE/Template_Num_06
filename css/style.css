@@ -1,0 +1,769 @@
+/* Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+/* Variables */
+  :root{
+    --BodyFontsFamily: 'Montserrat', sans-serif;
+    --MainColor: #383B40;
+    --MainAltColor: #00c7fc;
+    --MainSectionBg: #F3F4F6;
+    --MainTransition: 0.4s;
+    --MainPaddingTop: 125px;
+    --MainPaddingBottom: 125px;
+  }
+/* Global Rules */
+  *{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  /* html::-webkit-scrollbar {
+    width: ;
+  }
+  html::-webkit-scrollbar-track {
+    background-color: ;
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: ;
+  } */
+  ::selection {
+    background-color: black;
+    color: var(--MainAltColor);
+  }
+  body{
+    font-family: var(--BodyFontsFamily);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+  }
+  i {
+    cursor: pointer;
+  }
+  h1, h2, h3 {
+    text-transform: uppercase;
+  }
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+/* Small Screen */
+  @media (min-width: 768px) {
+    .container{
+      width: 750px;
+    }
+  }
+/* Medium Screen */
+  @media (min-width: 992px) {
+    .container{
+      width: 970px;
+    }
+  }
+/* Lager Screen*/
+  @media (min-width: 1200px) {
+    .container{
+      width: 1170px;
+    }
+  }
+/* Styling The Header Section */
+  header {
+    background-color: #fff;
+  }
+  header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    min-height: 91.95px;
+  }
+  header .logo-img {
+    max-height: 44px;
+  }
+  .header-nav .bars {
+    width: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    cursor: pointer;
+  }
+  .header-nav .bars span {
+    width: 100%;
+    border: 2px solid black;
+    height: 7px;
+    margin-bottom: 1px;
+  }
+  .header-nav .bars span:nth-of-type(2) {
+    width: 75%;
+    margin-left: auto;
+    transition: var(--MainTransition);
+  }
+  .header-nav .bars:hover span:nth-of-type(2) {
+    width: 100%;
+  }
+  .main-nav {
+    display: flex;
+  }
+  .main-nav a {
+    text-transform: uppercase;
+    color: var(--MainColor);
+    display: block;
+    padding: 40px 10px;
+    transition: var(--MainTransition);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+  }
+  .main-nav a:hover {
+    color: var(--MainAltColor);
+    background-color: #fafafa;
+  }
+  .main-nav a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    border-top: 4px solid var(--MainAltColor);
+    width: 100%;
+    left: -100%;
+    transition: var( --MainTransition);
+  }
+  .main-nav a:hover::before {
+    left: 0;
+  }
+/* ----- Making The Header Section Responsive ----- */
+  @media (min-width: 768px) {
+    .header-nav .bars {
+      display: none;
+    }
+  }
+  @media (max-width: 767px) {
+    .header-nav .main-nav {
+      display: none;
+    }
+    .header-nav .bars:hover + .main-nav {
+      position: absolute;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      top: 100%;
+      background: linear-gradient(320deg, #bababa, rgb(255 255 255 / 90%));
+      z-index: 1;
+    }
+    .header-nav .bars:hover + .main-nav a{
+      padding: 20px;
+    }
+    .main-nav a::before {
+      top: unset;
+      bottom: 0;
+    }
+    .header-nav .bars:hover + .main-nav li:not(:last-child) {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+/* Styling The Landing Section */
+  .landing {
+    min-height: 100vh;
+    background-image: url(../Images/landing.jpg);
+    background-size: cover;
+    background-color: black;
+    position: relative;
+  }
+  .landing .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0, 0.8);
+    }
+  .landing .text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 85%;
+    margin: 0 auto;
+    text-transform: uppercase;
+  }
+  .landing-title {
+    font-size: 3rem;
+    margin: 2rem 0;
+    letter-spacing: 1px;
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .bth {
+    display: block;
+    width: fit-content;
+    color: #fff;
+    padding: 12px 30px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    transition: var(--MainTransition);
+  }
+  .landing .bth:first-of-type {
+    border-color: #fff;
+    background-color: transparent;
+  }
+  .landing .bth:first-of-type:hover {
+    border-color: var(--MainAltColor);
+    background-color: var(--MainAltColor);
+    box-shadow: inset 0 0 0 24px #00c7fc;
+  }
+  .landing .bth:last-of-type {
+    border-color: var(--MainAltColor);
+    background-color: var(--MainAltColor);
+    box-shadow: inset 0 0 0 20px #00c7fc;
+  }
+  .landing .bth:last-of-type:hover {
+    border-color: #fff;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 0px #00c7fc;
+  }
+  .landing .arrow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+  }
+  .arrow-img {
+    animation: bouncing 1.25s linear infinite;
+  }
+/* ----- Making The Landing Section Responsive ----- */
+  @media (max-width: 991px) {
+    .landing .text {
+      width: 95%;
+    }
+  }
+  @media (max-width: 575px) {
+    .landing-title {
+      letter-spacing: normal;
+      font-size: 2.6rem;
+    }
+    .buttons {
+      gap: 10px;
+    }
+    .landing .bth {
+      padding: 12px 22px;
+      letter-spacing: 0;
+    }
+  }
+/* ------ Components Section Heading ------ */
+  .section-heading {
+    text-align: center;
+  }
+  .section-heading h2 {
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 100px;
+    color: #231f20;
+    position: relative;
+  }
+  .section-heading h2::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid var(--MainAltColor);
+    width: 140px;
+    bottom: -50px;
+  }
+  .section-heading h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    background-color: white;
+    width: 15px;
+    height: 15px;
+    border: 4px solid var(--MainAltColor);
+    bottom: -59px;
+  } 
+  .section-heading p {
+    margin: 0 auto 125px;
+    max-width: 100%;
+    line-height: 1.8;
+    color: var(--MainColor);
+  }
+/* Styling The Portfolio Section */
+  .portfolio {
+    padding-top: var(--MainPaddingTop);
+    background-color: var(--MainSectionBg);
+  }
+  .portfolio .image-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .portfolio .box {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    flex-basis: calc(100% / 6);
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .portfolio .box:first-of-type {
+    background-image: url(../Images/history-1.jpg);
+  }
+  .portfolio .box:nth-of-type(2) {
+    background-image: url(../Images/history-2.jpg);
+  }
+  .portfolio .box:nth-of-type(3) {
+    background-image: url(../Images/history-3.jpg);
+  }
+  .portfolio .box:nth-of-type(4) {
+    background-image: url(../Images/history-4.jpg);
+  }
+  .portfolio .box:nth-of-type(5) {
+    background-image: url(../Images/history-5.jpg);
+  }
+  .portfolio .box:last-of-type {
+    background-image: url(../Images/history-6.jpg);
+  }
+  .portfolio .caption {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    padding: 70px 0;
+    background: rgb(0 197 252 / 95%);
+    color: white;
+    text-align: center;
+    bottom: -100%;
+    transition: var(--MainTransition) linear;
+  }
+  .portfolio .box:hover .caption {
+  bottom: 0;
+  }
+  .portfolio .box .title {
+    font-size: 18px;
+  }
+  .portfolio .box .des {
+    padding: 2.5rem 0;
+    font-size: 12px;
+    line-height: 1.8;
+    font-weight: 500;
+  }
+  .portfolio .social a {
+    color: white;
+    padding: 15px;
+  }
+  .portfolio .social a:hover {
+    color: var(--MainColor);
+  }
+/* ----- Making The Portfolio Section Responsive ----- */
+  @media (min-width: 992px) and (max-width: 1198px) {
+    .portfolio .box {
+      flex-basis: 25%;
+    }
+    .portfolio .image-container {
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  @media (max-width:1199px) {
+    .portfolio .section-heading p > br {
+      display: none;
+    }
+    .portfolio .caption {
+      padding: 60px 15px;
+    }
+  }
+  @media (max-width: 991px) {
+    .portfolio .image-container {
+      gap: 20px;
+    }
+    .portfolio .box {
+      flex-basis: calc(90% / 3);
+      margin: 0 auto;
+    }
+  }
+  @media (max-width: 767px) {
+    .portfolio .box {
+      flex-basis: calc(95% / 2);
+    }
+  }
+  @media (max-width: 575px) {
+    .portfolio .box {
+      flex-basis: calc(75%);
+    }
+    .portfolio .caption {
+      padding: 80px 20px 40px;
+    }
+  }
+  @media (max-width: 400px) {
+    .portfolio .box {
+      flex-basis: 90%;
+    }
+    .portfolio .caption {
+      padding: 50px 20px 25px;
+      height: 70%;
+    }
+    .portfolio .box .des {
+      padding: 3rem 0;
+      font-size: 14px;
+    }
+  }
+/* Styling The Services Section */
+  .services {
+    padding-top: var(--MainPaddingTop);
+    padding-bottom: var(--MainPaddingBottom);
+    background-color: var(--MainSectionBg);
+  }
+  .services .section-heading p {
+    width: 90%;
+  }
+  .services .boxes {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .services .box {
+    text-align: center;
+    background-color: white;
+    padding: 60px 28px 70px;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--MainTransition);
+  }
+  .services .box:hover {
+    transform: scale(1.025);
+  }
+  .services .box::before, 
+  .services .box::after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 3px;
+    background-color: var(--MainAltColor);
+    transition: 0.5s;
+  }
+  .services .box::before {
+    left: 0;
+    top: 0;
+  }
+  .services .box::after {
+    right: 0;
+    bottom: 0;
+  }
+  .services .box:hover::before,
+  .services .box:hover::after {
+    width: 100%;
+  }
+  .services .image {
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .services .image::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    bottom: 25px;
+    background-color: var(--MainAltColor);
+    transition: var(--MainTransition);
+  }
+  .services .box:hover .image::before {
+    width: 60px;
+  }
+  .services .box .title {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 40px;
+  }
+  .services .box .des {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--MainColor);
+  }
+/* ----- Making The Services Section Responsive ----- */
+  @media (max-width: 991px) {
+    .services .boxes {
+      flex-direction: column;
+    }
+    .services .box {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+  @media (max-width: 575px) {
+    .services .box {
+      width: 90%;
+      padding: 30px 15px;
+    }
+    .services .box .title {
+      margin-bottom: 20px;
+    }
+  } 
+  @media (max-width: 375px) {
+  .services .box {
+    width: 100%;
+  }
+  }
+/* Styling The Clients Section */
+  .clients {
+    padding-top: var(--MainPaddingTop);
+    padding-bottom: var(--MainPaddingBottom);
+  }
+  .clients .section-heading p {
+    width: 90%;
+    color: #231f20;
+  }
+  .clients .section-heading .author {
+    display: block;
+    text-transform: capitalize;
+    color: #999;
+    margin-top: 10px;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .clients .image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  .clients .image {
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .clients .image > img {
+    transition: 0.1s;
+  }
+  .clients .image > img:hover {
+    filter: invert(61%) sepia(36%) saturate(3297%) hue-rotate(152deg) brightness(100%) contrast(104%);
+  }
+/* ----- Making The Clients Section Responsive ----- */
+  @media (max-width:1199px) {
+    .clients .image-container {
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 50px 0;
+    }
+  }
+  @media (max-width: 767px) {
+    .clients .image-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+/* Styling The Contact Section */
+  .contact-section {
+    padding: 60px 0;
+    background-color: #101012;
+    color: white;
+  }
+  .contact-section .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 30px;
+  }
+  .contact-section .about,
+  .contact-section .contact {
+    flex: 1;
+    border: 1px solid #707070;
+    text-align: center;
+    min-height: 450px;
+    padding: 75px 0px;
+  }
+  .contact-section .about .title {
+    position: relative;
+    margin-bottom: 60px;
+  }
+  .contact-section .about .title::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    bottom: -30px;
+    background-color: var(--MainAltColor);
+  }
+  .contact-section .about .des {
+    width: 85%;
+    margin: 0 auto;
+    line-height: 2;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 40px;
+  }
+  .contact-form .group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .contact-form label {
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: var(--MainTransition);
+  }
+  .contact-form label:hover {
+    color: var(--MainAltColor);
+  }
+  .contact-form .input,
+  .send{
+    border: none;
+    background: none;
+  }
+  .contact-form .input {
+    color: white;
+    border-bottom: 1px solid #707070;
+    caret-color: var(--MainAltColor);
+    width: 100%;
+  }
+  .contact-form textarea.input {
+    resize: none;
+    height: 80px;
+  }
+  .contact .message-label {
+    position: relative;
+  }
+  .contact-form .message-label::before {
+    content: "";
+    position: absolute;
+    top: 46px;
+    left: 0;
+    background-color: #707070;
+    height: 1px;
+    width: 100%;
+  }
+  .contact-form .input:focus {
+    outline: none;
+  }
+  .contact-section .send {
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--MainAltColor);
+    text-align: right;
+    width: 80%;
+    transition: var(--MainTransition);
+  }
+  .contact-section .send:hover {
+    color: white;
+  }
+/* ----- Making The Contact Section Responsive ----- */
+  @media (max-width: 991px) { 
+    .contact-section .about,
+    .contact-section .contact {
+      width: 75%;
+      margin: 0 auto;
+    }
+  }
+  @media (max-width: 767px) {
+    .contact-section .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .contact-section .about,
+    .contact-section .contact {
+      min-height: 370px;
+      padding: 50px 0;
+      width: 80%;
+    }
+    .contact-form textarea.input {
+      height: fit-content;
+    }
+  }
+  @media (max-width: 550px) {
+    .contact-section .about,
+    .contact-section .contact {
+      width: 100%;
+    }
+    .contact-section .about .des {
+      width: 95%;
+      line-height: 1.6;
+    }
+    .contact-form .group {
+      width: 90%;
+    }
+  }
+/* Styling The Footer Section */
+  footer {
+    background-color: var(--MainAltColor);
+    padding: 40px 0;
+  }
+  footer > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .copyright {
+    text-transform: capitalize;
+    color: white;
+    font-weight: 500;
+  }
+  footer .social > a {
+    color: white;
+  }
+  footer .social > a:not(:last-child) {
+    padding-right: 30px;
+  }
+/* ----- Making The Footer Section Responsive ----- */
+  @media (max-width: 991px) {
+    footer > .container {
+    flex-direction: column;
+    gap: 40px;
+    }
+  }
+/* ------  Animation ------ */
+  @keyframes bouncing {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0)
+    }
+    40%{
+      transform: translateY(-20px)
+    }
+    60%{
+      transform: translateY(-10px)
+    }
+  }
