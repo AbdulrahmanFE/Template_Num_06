@@ -21,15 +21,6 @@
   html {
     scroll-behavior: smooth;
   }
-  /* html::-webkit-scrollbar {
-    width: ;
-  }
-  html::-webkit-scrollbar-track {
-    background-color: ;
-  }
-  html::-webkit-scrollbar-thumb {
-    background-color: ;
-  } */
   ::selection {
     background-color: black;
     color: var(--MainAltColor);
@@ -84,39 +75,60 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    min-height: 91.95px;
+    min-height: 90px;
   }
   header .logo-img {
     max-height: 44px;
   }
-  .header-nav .bars {
+  header .main-nav .check {
+    display: none;
+  }
+  header .main-nav .check + .burger {
+    z-index: 1;
     width: 30px;
-    display: flex;
-    flex-wrap: wrap;
+    height: 18px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 15px;
     cursor: pointer;
   }
-  .header-nav .bars span {
+  header .main-nav .check + .burger span {
+    height: 4px;
     width: 100%;
-    border: 2px solid black;
-    height: 7px;
-    margin-bottom: 1px;
+    background-color: #000;
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+    transition: 0.3s;
   }
-  .header-nav .bars span:nth-of-type(2) {
-    width: 75%;
-    margin-left: auto;
-    transition: var(--MainTransition);
+  header .main-nav .check + .burger span:first-child {
+    top: 0;
   }
-  .header-nav .bars:hover span:nth-of-type(2) {
-    width: 100%;
+  header .main-nav .check:checked + .burger span:first-child {
+    top: 50%;
+    transform: rotate(45deg);
+    background-color: var(--MainAltColor);
   }
-  .main-nav {
+  header .main-nav .check + .burger span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  header .main-nav .check:checked + .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  header .main-nav .check + .burger span:last-child {
+    bottom: 0;
+  }
+  header .main-nav .check:checked + .burger span:last-child {
+    top: 50%;
+    transform: rotate(-45deg);
+    background-color: var(--MainAltColor);
+  }
+  header .main-nav ul {
     display: flex;
   }
-  .main-nav a {
+  header .main-nav ul a {
     text-transform: uppercase;
     color: var(--MainColor);
     display: block;
@@ -126,51 +138,56 @@
     position: relative;
     overflow: hidden;
   }
-  .main-nav a:hover {
+  header .main-nav ul a:hover {
     color: var(--MainAltColor);
     background-color: #fafafa;
   }
-  .main-nav a::before {
+  header .main-nav ul a::before {
     content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     border-top: 4px solid var(--MainAltColor);
-    width: 100%;
-    left: -100%;
+    width: 0;
+    left: 50%;
+    transform: translateX(-50%);
     transition: var( --MainTransition);
   }
-  .main-nav a:hover::before {
-    left: 0;
+  header .main-nav ul a:hover::before {
+    width: 100%;
   }
 /* ----- Making The Header Section Responsive ----- */
   @media (min-width: 768px) {
-    .header-nav .bars {
+    header .burger {
       display: none;
     }
   }
   @media (max-width: 767px) {
-    .header-nav .main-nav {
-      display: none;
-    }
-    .header-nav .bars:hover + .main-nav {
+    header .main-nav ul {
       position: absolute;
-      left: 0;
-      display: flex;
-      flex-direction: column;
       width: 100%;
       top: 100%;
-      background: linear-gradient(320deg, #bababa, rgb(255 255 255 / 90%));
-      z-index: 1;
+      left: 0;
+      flex-direction: column;
+      background: rgb(0 0 0 / 90%);
+      visibility: hidden;
+      opacity: 0;
+      z-index: -11;
+      transition: var(--MainTransition);
     }
-    .header-nav .bars:hover + .main-nav a{
+    header .main-nav .check:checked ~ ul {
+      visibility: visible;
+      opacity: 1;
+      z-index: 11;
+    }
+    header .main-nav ul a {
       padding: 20px;
+      color: #FFF;
     }
-    .main-nav a::before {
-      top: unset;
-      bottom: 0;
+    header .main-nav ul a:hover {
+      background-color: unset;
     }
-    .header-nav .bars:hover + .main-nav li:not(:last-child) {
-      border-bottom: 1px solid #ddd;
+    header .main-nav ul li:not(:last-child) {
+      border-bottom: 1px solid #555;
     }
   }
 /* Styling The Landing Section */
@@ -320,7 +337,7 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    flex-basis: calc(100% / 6);
+    flex-basis: 20%;
     height: 500px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -340,15 +357,12 @@
   .portfolio .box:nth-of-type(5) {
     background-image: url(../Images/history-5.jpg);
   }
-  .portfolio .box:last-of-type {
-    background-image: url(../Images/history-6.jpg);
-  }
   .portfolio .caption {
     position: absolute;
     left: 0;
     width: 100%;
     height: 65%;
-    padding: 70px 0;
+    padding: 50px 25px;
     background: rgb(0 197 252 / 95%);
     color: white;
     text-align: center;
@@ -356,76 +370,57 @@
     transition: var(--MainTransition) linear;
   }
   .portfolio .box:hover .caption {
-  bottom: 0;
+    bottom: 0;
   }
   .portfolio .box .title {
     font-size: 18px;
   }
   .portfolio .box .des {
-    padding: 2.5rem 0;
+    padding: 3rem 0;
     font-size: 12px;
     line-height: 1.8;
     font-weight: 500;
   }
   .portfolio .social a {
     color: white;
-    padding: 15px;
-  }
-  .portfolio .social a:hover {
-    color: var(--MainColor);
+    padding: 20px;
   }
 /* ----- Making The Portfolio Section Responsive ----- */
-  @media (min-width: 992px) and (max-width: 1198px) {
+  @media (max-width: 1245px) {
     .portfolio .box {
       flex-basis: 25%;
     }
-    .portfolio .image-container {
-      gap: 20px;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  @media (max-width:1199px) {
-    .portfolio .section-heading p > br {
+    .portfolio .box:nth-of-type(5) {
       display: none;
-    }
-    .portfolio .caption {
-      padding: 60px 15px;
     }
   }
   @media (max-width: 991px) {
-    .portfolio .image-container {
-      gap: 20px;
-    }
     .portfolio .box {
-      flex-basis: calc(90% / 3);
-      margin: 0 auto;
+      flex-basis: 33.333%;
+    }
+    .portfolio .box:nth-of-type(4) {
+      display: none;
     }
   }
   @media (max-width: 767px) {
     .portfolio .box {
-      flex-basis: calc(95% / 2);
+      flex-basis: 50%;
+    }
+    .portfolio .box:nth-of-type(3) {
+      display: none;
     }
   }
-  @media (max-width: 575px) {
+  @media (max-width: 610px) {
     .portfolio .box {
-      flex-basis: calc(75%);
+      flex-basis: 100%;
     }
-    .portfolio .caption {
-      padding: 80px 20px 40px;
+    .portfolio .box:nth-of-type(2) {
+      display: none;
     }
   }
-  @media (max-width: 400px) {
-    .portfolio .box {
-      flex-basis: 90%;
-    }
+  @media (max-width: 301px) {
     .portfolio .caption {
-      padding: 50px 20px 25px;
-      height: 70%;
-    }
-    .portfolio .box .des {
-      padding: 3rem 0;
-      font-size: 14px;
+      padding: 40px 20px;
     }
   }
 /* Styling The Services Section */
@@ -451,10 +446,6 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    transition: var(--MainTransition);
-  }
-  .services .box:hover {
-    transform: scale(1.025);
   }
   .services .box::before, 
   .services .box::after {
@@ -729,8 +720,8 @@
   }
 /* Styling The Footer Section */
   footer {
-    background-color: var(--MainAltColor);
-    padding: 40px 0;
+    background-color: #090909;
+    padding: 40px 0 0;
   }
   footer > .container {
     display: flex;
@@ -744,10 +735,24 @@
   }
   footer .social > a {
     color: white;
+    padding: 15px;
+    transition: var(--MainTransition);
   }
-  footer .social > a:not(:last-child) {
-    padding-right: 30px;
+  footer .social > a:hover {
+    color: var(--color);
   }
+  footer .coded {
+    color: #ddd; 
+    border-top: 1px solid #333;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 25px 0;
+    margin: 40px 0 0;
+  }
+  footer .coded .author {
+    color: #FFF;
+    font-weight: 700;
+}
 /* ----- Making The Footer Section Responsive ----- */
   @media (max-width: 991px) {
     footer > .container {
